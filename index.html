@@ -1,0 +1,131 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Proposal</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            padding-top: 100px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            font-size: 22px;
+            margin-bottom: 40px;
+        }
+
+        button {
+            width: 100px;
+            height: 100px;
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #yesBtn {
+            background: #28a745;
+            color: white;
+            margin-right: 20px;
+        }
+
+        #noBtn {
+            background: #dc3545;
+            color: white;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>💰 Loan Request 💰</h1>
+        <p>Will you be my friend?</p>
+
+        <button id="yesBtn">Yes</button>
+        <button id="noBtn">No</button>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById("yesBtn");
+        const noBtn = document.getElementById("noBtn");
+
+        let scale = 1;
+
+        // Position NO button initially
+        noBtn.style.left = "60%";
+        noBtn.style.top = "250px";
+
+        // Move NO button and enlarge YES button
+        function moveButton() {
+            const maxX = window.innerWidth - noBtn.offsetWidth;
+            const maxY = window.innerHeight - noBtn.offsetHeight;
+
+            const x = Math.random() * maxX;
+            const y = Math.random() * maxY;
+
+            noBtn.style.left = x + "px";
+            noBtn.style.top = y + "px";
+
+            scale += 0.2;
+            yesBtn.style.transform = `scale(${scale})`;
+        }
+
+        noBtn.addEventListener("mouseover", moveButton);
+        noBtn.addEventListener("click", moveButton);
+
+        // Show independent thank-you page
+        yesBtn.addEventListener("click", () => {
+            document.body.innerHTML = `
+        <div style="
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+            text-align:center;
+            background:#f5f5f5;
+            padding:20px;
+        ">
+            <h1 style="font-size:50px;">🎉 THANK YOU! 🎉</h1>
+
+            <p style="font-size:28px; max-width:700px;">
+                Thank you so much for agreeing to lend me money.
+                Your kindness and support mean a lot to me. ❤️
+            </p>
+
+            <!-- Replace kneeling.jpg with your own image -->
+            <img src="kneeling.jpg"
+                 alt="Kneeling"
+                 style="
+                    width:350px;
+                    max-width:90%;
+                    border-radius:15px;
+                    margin-top:20px;
+                 ">
+        </div>
+    `;
+        });
+    </script>
+
+</body>
+
+</html>
+```
