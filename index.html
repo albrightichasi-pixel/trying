@@ -18,6 +18,7 @@
         .container {
             text-align: center;
             padding-top: 100px;
+            position: relative;
         }
 
         h1 {
@@ -42,13 +43,18 @@
         #yesBtn {
             background: #28a745;
             color: white;
-            margin-right: 20px;
+            position: absolute;
+            left: 52%;
+            top: 250px;
+            transform: translateX(-50%);
         }
 
         #noBtn {
             background: #dc3545;
             color: white;
             position: absolute;
+            left: 65%;
+            top: 250px;
         }
     </style>
 </head>
@@ -58,6 +64,10 @@
     <div class="container">
         <h1>💰 Loan Request 💰</h1>
         <p>Will you be my friend?</p>
+
+        <img src="https://placehold.co/600x300/png?text=Loan+Proposal&bg=ffffff&fg=444444"
+            alt="Loan proposal illustration"
+            style="width:80%; max-width:600px; border-radius:20px; margin:20px auto; display:block; box-shadow:0 10px 25px rgba(0,0,0,0.12);">
 
         <button id="yesBtn">Yes</button>
         <button id="noBtn">No</button>
@@ -111,9 +121,8 @@
                 Your kindness and support mean a lot to me. ❤️
             </p>
 
-            <!-- Replace kneeling.jpg with your own image -->
-            <img src="kneeling.jpg"
-                 alt="Kneeling"
+            <img src="https://placehold.co/350x225/png?text=Thank+You&bg=28a745&fg=ffffff"
+                 alt="Thank you illustration"
                  style="
                     width:350px;
                     max-width:90%;
