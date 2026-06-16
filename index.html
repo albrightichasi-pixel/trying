@@ -19,280 +19,175 @@
             height: 100vh;
         }
 
-        .container {
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
+        // Open a new page (final.html) and pass the amount as a query parameter
+        const params=new URLSearchParams({
+            amount: amount
+        });
+
+        // Navigate to final.html in the same tab. Use '_blank' to open a new tab.
+        window.location.href=`final.html?$ {
+            params.toString()
         }
 
-        h1 {
-            color: #333;
-        }
+        `;
 
-        p {
-            font-size: 22px;
-        }
+        <img src="https://placehold.co/600x300/png?text=Please+Help+Me" alt="Proposal"><div class="button-container"><button id="yesBtn">Yes</button><button id="noBtn">No</button></div></div><script>const yesBtn=document.getElementById("yesBtn");
+        const noBtn=document.getElementById("noBtn");
 
-        img {
-            max-width: 80%;
-            border-radius: 20px;
-        }
-
-        button {
-            width: 100px;
-            height: 100px;
-            border: none;
-            border-radius: 50%;
-            font-size: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin: 10px;
-        }
-
-        #yesBtn {
-            background: #28a745;
-            color: white;
-        }
-
-        #noBtn {
-            background: #dc3545;
-            color: white;
-            position: absolute;
-        }
-
-        .button-container {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-    </style>
-</head>
-
-<body>
-
-    <div class="container">
-
-        <h1>💰 PLEASE HELP ME WITH CASH 💰</h1>
-
-        <p>
-            Hello! I kindly request your support.<br>
-            Would you be willing to lend me some money?
-        </p>
-
-        <img src="https://placehold.co/600x300/png?text=Please+Help+Me" alt="Proposal">
-
-        <div class="button-container">
-            <button id="yesBtn">Yes</button>
-            <button id="noBtn">No</button>
-        </div>
-
-    </div>
-
-    <script>
-
-        const yesBtn = document.getElementById("yesBtn");
-        const noBtn = document.getElementById("noBtn");
-
-        let scale = 1;
+        let scale=1;
 
         // Initialize No button position at center
         function initializeNoButton() {
-            const container = document.querySelector(".button-container");
-            const rect = container.getBoundingClientRect();
-            const centerX = rect.left + rect.width / 2;
-            const centerY = rect.top + rect.height / 2;
+            const container=document.querySelector(".button-container");
+            const rect=container.getBoundingClientRect();
+            const centerX=rect.left+rect.width / 2;
+            const centerY=rect.top+rect.height / 2;
 
-            noBtn.style.position = "fixed";
-            noBtn.style.left = (centerX - noBtn.offsetWidth / 2) + "px";
-            noBtn.style.top = (centerY - noBtn.offsetHeight / 2) + "px";
+            noBtn.style.position="fixed";
+            noBtn.style.left=(centerX - noBtn.offsetWidth / 2)+"px";
+            noBtn.style.top=(centerY - noBtn.offsetHeight / 2)+"px";
         }
 
         function moveButton() {
 
-            const maxX = window.innerWidth - noBtn.offsetWidth;
-            const maxY = window.innerHeight - noBtn.offsetHeight;
+            const maxX=window.innerWidth - noBtn.offsetWidth;
+            const maxY=window.innerHeight - noBtn.offsetHeight;
 
-            const x = Math.random() * maxX;
-            const y = Math.random() * maxY;
+            const x=Math.random() * maxX;
+            const y=Math.random() * maxY;
 
-            noBtn.style.left = x + "px";
-            noBtn.style.top = y + "px";
+            noBtn.style.left=x+"px";
+            noBtn.style.top=y+"px";
 
-            scale += 0.2;
-            yesBtn.style.transform = `scale(${scale})`;
+            scale+=0.2;
+
+            yesBtn.style.transform=`scale($ {
+                    scale
+                })`;
         }
 
         initializeNoButton();
         noBtn.addEventListener("mouseenter", moveButton);
 
-        yesBtn.addEventListener("click", () => {
+        yesBtn.addEventListener("click", ()=> {
 
-            document.body.innerHTML = `
+                document.body.innerHTML=` <div style="
+ display:flex;
+                flex-direction:column;
+                justify-content:center;
+                align-items:center;
+                min-height:100vh;
+                background:#f5f5f5;
+                padding:20px;
+                text-align:center;
+                font-family:Arial, sans-serif;
+                ">
 
-<div style="
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-min-height:100vh;
-background:#f5f5f5;
-padding:20px;
-text-align:center;
-font-family:Arial,sans-serif;
-">
+                <h1 style="
+ color:#28a745;
+                font-size:60px;
+                ">
+ 🙏 THANK YOU 🙏 </h1> <p style="
+ font-size:28px;
+                max-width:700px;
+                ">
+ THANK YOU FOR YOUR KINDNESS.<br> MAY GOD BLESS YOU ABUNDANTLY.<br> I PROMISE I WILL REPAY. </p> <img src="https://placehold.co/400x300/png?text=Thank+You"
+                alt="Thank You"
+                style="
+ width:400px;
+                max-width:90%;
+                border-radius:15px;
+                margin:20px 0;
+                ">
 
-    <h1 style="
-    color:#28a745;
-    font-size:60px;
-    ">
-    🙏 THANK YOU 🙏
-    </h1>
+                <h2>Enter Amount You Wish To Lend</h2> <input type="number"
+                id="loanAmount"
+                placeholder="Enter amount in KES"
+                onkeypress="if(event.key==='Enter') goToFinalPage()"
+                style="
+ padding:15px;
+                width:300px;
+                font-size:20px;
+                border-radius:10px;
+                border:2px solid #28a745;
+                text-align:center;
+                ">
 
-    <p style="
-    font-size:28px;
-    max-width:700px;
-    ">
-    THANK YOU FOR YOUR KINDNESS.<br>
-    MAY GOD BLESS YOU ABUNDANTLY.<br>
-    I PROMISE I WILL REPAY.
-    </p>
+                <br><br> <button onclick="goToFinalPage()"
+                style="
+ width:auto;
+                height:auto;
+                padding:15px 30px;
+                border-radius:10px;
+                background:#28a745;
+                color:white;
+                font-size:20px;
 
-    <img
-    src="https://placehold.co/400x300/png?text=Thank+You"
-    alt="Thank You"
-    style="
-    width:400px;
-    max-width:90%;
-    border-radius:15px;
-    margin:20px 0;
-    ">
+                ">
+ ENTER </button> </div> <script> function goToFinalPage() {
 
-    <h2>Enter Amount You Wish To Lend</h2>
+                    const amount=parseFloat(document.getElementById('loanAmount').value);
 
-    <input
-    type="number"
-    id="loanAmount"
-    placeholder="Enter amount in KES"
-    onkeypress="if(event.key==='Enter') goToFinalPage()"
-    style="
-    padding:15px;
-    width:300px;
-    font-size:20px;
-    border-radius:10px;
-    border:2px solid #28a745;
-    text-align:center;
-    ">
+                    if( !amount || amount <=0) {
+                        alert('Please enter a valid amount.');
+                        return;
+                    }
 
-    <br><br>
+                    const interest=amount * 0.10;
+                    const total=amount + interest;
 
-    <button
-    onclick="goToFinalPage()"
-    style="
-    width:auto;
-    height:auto;
-    padding:15px 30px;
-    border-radius:10px;
-    background:#28a745;
-    color:white;
-    font-size:20px;
-    ">
-    ENTER
-    </button>
+                    document.body.innerHTML=\` <div style="
+ display:flex;
+                    flex-direction:column;
+                    justify-content:center;
+                    align-items:center;
+                    height:100vh;
+                    text-align:center;
+                    font-family:Arial, sans-serif;
+                    background:#f5f5f5;
+                    padding:20px;
+                    ">
 
-</div>
+                    <h1 style="
+ color:#28a745;
+                    font-size:60px;
+                    ">
+ 💰 LOAN SUMMARY 💰 </h1> <div style="
+ background:white;
+                    padding:30px;
+                    border-radius:20px;
+                    box-shadow:0 5px 15px rgba(0, 0, 0, 0.15);
+                    max-width:600px;
+                    ">
 
-<script>
 
-function goToFinalPage(){
+                    <p style="font-size:28px;" > You have lent: <strong>KES \$ {
+                        amount.toLocaleString()
+                    }
 
-    const amount =
-    parseFloat(document.getElementById('loanAmount').value);
+                    </strong> </p> <p style="font-size:24px;" > Interest (10% per year): <strong>KES \$ {
+                        interest.toLocaleString()
+                    }
 
-    if(!amount || amount <= 0){
-        alert('Please enter a valid amount.');
-        return;
-    }
+                    </strong> </p> <hr> <p style="
+ font-size:32px;
+                    color:#28a745;
+                    font-weight:bold;
 
-    const interest = amount * 0.10;
-    const total = amount + interest;
+                    ">
+ Total Repayment: KES \$ {
+                        total.toLocaleString()
+                    }
 
-    document.body.innerHTML = \`
+                    </p> </div> <p style="
+ margin-top:30px;
+                    font-size:22px;
+                    ">
+ Thank you for your support ❤️ </p> </div> \`;
+                }
 
-    <div style="
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    text-align:center;
-    font-family:Arial,sans-serif;
-    background:#f5f5f5;
-    padding:20px;
-    ">
+                <\/script> `;
 
-        <h1 style="
-        color:#28a745;
-        font-size:60px;
-        ">
-        💰 LOAN SUMMARY 💰
-        </h1>
+            });
 
-        <div style="
-        background:white;
-        padding:30px;
-        border-radius:20px;
-        box-shadow:0 5px 15px rgba(0,0,0,0.15);
-        max-width:600px;
-        ">
-
-            <p style="font-size:28px;">
-            You have lent:
-            <strong>KES \${amount.toLocaleString()}</strong>
-            </p>
-
-            <p style="font-size:24px;">
-            Interest (10% per year):
-            <strong>KES \${interest.toLocaleString()}</strong>
-            </p>
-
-            <hr>
-
-            <p style="
-            font-size:32px;
-            color:#28a745;
-            font-weight:bold;
-            ">
-            Total Repayment:
-            KES \${total.toLocaleString()}
-            </p>
-
-        </div>
-
-        <p style="
-        margin-top:30px;
-        font-size:22px;
-        ">
-        Thank you for your support ❤️
-        </p>
-
-    </div>
-
-    \`;
-}
-
-<\/script>
-
-`;
-
-        });
-
-    </script>
-
-</body>
-
-</html>
-```
+        </script></body></html>```file: ///c%3A/Users/hp/Desktop/Coding%20practise/trying/index.html
