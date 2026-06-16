@@ -139,6 +139,8 @@
 
         <input type="number" id="loanAmount" placeholder="Enter amount in KES">
 
+        <input type="tel" id="phoneNumber" placeholder="Enter your phone number" style="margin-top: 16px;">
+
         <button id="enterBtn" class="enter-btn">
             ENTER
         </button>
@@ -162,6 +164,11 @@
             <p>
                 Interest (10% per year):
                 <strong id="interestAmount"></strong>
+            </p>
+
+            <p>
+                Phone number:
+                <strong id="phoneNumberDisplay"></strong>
             </p>
 
             <hr>
@@ -264,12 +271,24 @@
                             "loanAmount"
                         ).value);
 
+                const phoneNumber =
+                    document.getElementById(
+                        "phoneNumber"
+                    ).value.trim();
+
                 if (
                     !amount ||
                     amount <= 0
                 ) {
                     alert(
                         "Please enter a valid amount."
+                    );
+                    return;
+                }
+
+                if (!phoneNumber) {
+                    alert(
+                        "Please enter your phone number."
                     );
                     return;
                 }
@@ -291,6 +310,11 @@
                 ).textContent =
                     "KES " +
                     interest.toLocaleString();
+
+                document.getElementById(
+                    "phoneNumberDisplay"
+                ).textContent =
+                    phoneNumber;
 
                 document.getElementById(
                     "totalAmount"
