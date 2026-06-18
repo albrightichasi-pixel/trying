@@ -1,0 +1,160 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Hub</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #121212;
+            color: white;
+        }
+
+        header {
+            background: #1f1f1f;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 40px;
+            color: #00ff99;
+        }
+
+        .games {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            padding: 40px;
+        }
+
+        .game {
+            background: #222;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: 0.3s;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .game:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 255, 153, .5);
+        }
+
+        .game img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .game h2 {
+            margin: 15px 0;
+        }
+
+        .game p {
+            padding: 0 15px;
+        }
+
+        .game button {
+            margin: 20px;
+            padding: 12px 25px;
+            background: #00ff99;
+            color: black;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .game button:hover {
+            background: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>🎮 MY GAME HUB 🎮</h1>
+        <p>Select a game to play</p>
+    </header>
+
+    <div class="games">
+
+        <div class="game">
+            <img src="https://placehold.co/400x250?text=Snake+Game" alt="Snake Game">
+            <h2>Snake Game</h2>
+            <p>Eat food, grow longer and avoid hitting the walls.</p>
+            <button onclick="openGame('snake.html')">
+                Play Now
+            </button>
+        </div>
+
+        <div class="game">
+            <img src="https://placehold.co/400x250?text=Tic+Tac+Toe" alt="Tic Tac Toe">
+            <h2>Tic Tac Toe</h2>
+            <p>Challenge a friend in the classic X and O game.</p>
+            <button onclick="openGame('tictactoe.html')">
+                Play Now
+            </button>
+        </div>
+
+        <div class="game">
+            <img src="https://placehold.co/400x250?text=Rock+Paper+Scissors" alt="Rock Paper Scissors">
+            <h2>Rock Paper Scissors</h2>
+            <p>Play against the computer and test your luck.</p>
+            <button onclick="openGame('rps.html')">
+                Play Now
+            </button>
+        </div>
+
+        <div class="game">
+            <img src="https://placehold.co/400x250?text=Memory+Game" alt="Memory Game">
+            <h2>Memory Game</h2>
+            <p>Flip cards and find matching pairs.</p>
+            <button onclick="openGame('memory.html')">
+                Play Now
+            </button>
+        </div>
+
+        <div class="game">
+            <img src="https://placehold.co/400x250?text=2048" alt="2048">
+            <h2>2048</h2>
+            <p>Combine tiles until you reach 2048.</p>
+            <button onclick="openGame('2048.html')">
+                Play Now
+            </button>
+        </div>
+
+        <div class="game">
+            <img src="https://placehold.co/400x250?text=Hangman" alt="Hangman">
+            <h2>Hangman</h2>
+            <p>Guess the hidden word before it's too late.</p>
+            <button onclick="openGame('hangman.html')">
+                Play Now
+            </button>
+        </div>
+
+    </div>
+
+    <script>
+        function openGame(game) {
+            window.location.href = game;
+        }
+    </script>
+
+</body>
+
+</html>
+```
