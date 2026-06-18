@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,153 +7,215 @@
     <title>Game Hub</title>
 
     <style>
+        :root {
+            --bg: #111315;
+            --panel: #1c2126;
+            --panel-2: #232a30;
+            --text: #f4f7f8;
+            --muted: #a9b4bc;
+            --accent: #35d07f;
+            --accent-dark: #1fa160;
+            --line: #313941;
+        }
+
         * {
-            margin: 0;
-            padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
         }
 
         body {
-            background: #121212;
-            color: white;
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(53, 208, 127, 0.16), transparent 32rem),
+                linear-gradient(135deg, #101214 0%, var(--bg) 55%, #161a1e 100%);
         }
 
         header {
-            background: #1f1f1f;
-            padding: 20px;
-            text-align: center;
+            width: min(100% - 32px, 1080px);
+            margin: 0 auto;
+            padding: 38px 0 24px;
         }
 
-        header h1 {
-            font-size: 40px;
-            color: #00ff99;
+        h1 {
+            margin: 0;
+            font-size: clamp(2.1rem, 7vw, 4rem);
+            letter-spacing: 0;
+        }
+
+        header p {
+            margin: 10px 0 0;
+            color: var(--muted);
+            font-size: 1.05rem;
         }
 
         .games {
+            width: min(100% - 32px, 1080px);
+            margin: 0 auto;
+            padding: 16px 0 44px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            padding: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 18px;
         }
 
         .game {
-            background: #222;
-            border-radius: 15px;
+            min-height: 360px;
+            display: flex;
+            flex-direction: column;
             overflow: hidden;
-            transition: 0.3s;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            box-shadow: 0 18px 42px rgba(0, 0, 0, 0.24);
         }
 
-        .game:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(0, 255, 153, .5);
+        .preview {
+            min-height: 190px;
+            display: grid;
+            place-items: center;
+            background: var(--panel-2);
+            border-bottom: 1px solid var(--line);
         }
 
-        .game img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
+        .snake-preview {
+            width: 180px;
+            height: 180px;
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: repeat(6, 1fr);
+            gap: 5px;
+            padding: 10px;
+            background: #151a18;
+            border: 2px solid var(--accent);
+            border-radius: 8px;
+        }
+
+        .snake-preview span {
+            border-radius: 4px;
+            background: #2e373d;
+        }
+
+        .snake-preview .snake {
+            background: var(--accent);
+        }
+
+        .snake-preview .food {
+            background: #ff5c5c;
+            border-radius: 50%;
+        }
+
+        .tic-preview {
+            width: 180px;
+            height: 180px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 7px;
+        }
+
+        .tic-preview span {
+            display: grid;
+            place-items: center;
+            background: #15191d;
+            border: 1px solid #3a444d;
+            border-radius: 8px;
+            color: var(--accent);
+            font-size: 2.4rem;
+            font-weight: 800;
+        }
+
+        .game-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
         }
 
         .game h2 {
-            margin: 15px 0;
+            margin: 0;
+            font-size: 1.45rem;
         }
 
         .game p {
-            padding: 0 15px;
+            margin: 10px 0 24px;
+            color: var(--muted);
+            line-height: 1.5;
         }
 
-        .game button {
-            margin: 20px;
-            padding: 12px 25px;
-            background: #00ff99;
-            color: black;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 18px;
+        .game a {
+            margin-top: auto;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 46px;
+            padding: 0 18px;
+            border-radius: 8px;
+            color: #09120d;
+            background: var(--accent);
+            font-weight: 800;
+            text-decoration: none;
+            transition: background 180ms ease, transform 180ms ease;
         }
 
-        .game button:hover {
-            background: white;
+        .game a:hover {
+            background: var(--accent-dark);
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 560px) {
+            header {
+                padding-top: 28px;
+            }
+
+            .games {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 
 <body>
-
     <header>
-        <h1>🎮 MY GAME HUB 🎮</h1>
-        <p>Select a game to play</p>
+        <h1>Game Hub</h1>
+        <p>Select a game and start playing.</p>
     </header>
 
-    <div class="games">
+    <main class="games">
+        <article class="game">
+            <div class="preview" aria-hidden="true">
+                <div class="snake-preview">
+                    <span></span><span></span><span></span><span></span><span class="food"></span><span></span>
+                    <span></span><span></span><span></span><span></span><span></span><span></span>
+                    <span></span><span class="snake"></span><span class="snake"></span><span class="snake"></span><span></span><span></span>
+                    <span></span><span></span><span></span><span class="snake"></span><span></span><span></span>
+                    <span></span><span></span><span></span><span class="snake"></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="game-content">
+                <h2>Snake</h2>
+                <p>Eat food, grow longer, and avoid crashing into the wall or yourself.</p>
+                <a href="snake.html">Play Snake</a>
+            </div>
+        </article>
 
-        <div class="game">
-            <img src="https://placehold.co/400x250?text=Snake+Game" alt="Snake Game">
-            <h2>Snake Game</h2>
-            <p>Eat food, grow longer and avoid hitting the walls.</p>
-            <button onclick="openGame('snake.html')">
-                Play Now
-            </button>
-        </div>
-
-        <div class="game">
-            <img src="https://placehold.co/400x250?text=Tic+Tac+Toe" alt="Tic Tac Toe">
-            <h2>Tic Tac Toe</h2>
-            <p>Challenge a friend in the classic X and O game.</p>
-            <button onclick="openGame('tictactoe.html')">
-                Play Now
-            </button>
-        </div>
-
-        <div class="game">
-            <img src="https://placehold.co/400x250?text=Rock+Paper+Scissors" alt="Rock Paper Scissors">
-            <h2>Rock Paper Scissors</h2>
-            <p>Play against the computer and test your luck.</p>
-            <button onclick="openGame('rps.html')">
-                Play Now
-            </button>
-        </div>
-
-        <div class="game">
-            <img src="https://placehold.co/400x250?text=Memory+Game" alt="Memory Game">
-            <h2>Memory Game</h2>
-            <p>Flip cards and find matching pairs.</p>
-            <button onclick="openGame('memory.html')">
-                Play Now
-            </button>
-        </div>
-
-        <div class="game">
-            <img src="https://placehold.co/400x250?text=2048" alt="2048">
-            <h2>2048</h2>
-            <p>Combine tiles until you reach 2048.</p>
-            <button onclick="openGame('2048.html')">
-                Play Now
-            </button>
-        </div>
-
-        <div class="game">
-            <img src="https://placehold.co/400x250?text=Hangman" alt="Hangman">
-            <h2>Hangman</h2>
-            <p>Guess the hidden word before it's too late.</p>
-            <button onclick="openGame('hangman.html')">
-                Play Now
-            </button>
-        </div>
-
-    </div>
-
-    <script>
-        function openGame(game) {
-            window.location.href = game;
-        }
-    </script>
-
+        <article class="game">
+            <div class="preview" aria-hidden="true">
+                <div class="tic-preview">
+                    <span>X</span><span>O</span><span>X</span>
+                    <span></span><span>X</span><span>O</span>
+                    <span>O</span><span></span><span>X</span>
+                </div>
+            </div>
+            <div class="game-content">
+                <h2>Tic Tac Toe</h2>
+                <p>Take turns with a friend and line up three marks to win.</p>
+                <a href="tictactoe.html">Play Tic Tac Toe</a>
+            </div>
+        </article>
+    </main>
 </body>
 
 </html>
-```
