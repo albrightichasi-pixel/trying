@@ -126,6 +126,59 @@
             font-weight: 800;
         }
 
+        .basketball-preview {
+            width: 180px;
+            height: 180px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(#8ed3ff 0 70%, #c97837 70% 100%);
+            border: 2px solid var(--line);
+            border-radius: 8px;
+        }
+
+        .basketball-preview::before {
+            content: "";
+            position: absolute;
+            left: 42px;
+            top: 34px;
+            width: 96px;
+            height: 10px;
+            background: #f8fbff;
+            border-radius: 2px;
+        }
+
+        .basketball-preview .rim {
+            position: absolute;
+            left: 54px;
+            top: 74px;
+            width: 72px;
+            height: 8px;
+            background: #d94532;
+            border-radius: 999px;
+        }
+
+        .basketball-preview .net {
+            position: absolute;
+            left: 68px;
+            top: 82px;
+            width: 44px;
+            height: 36px;
+            border: 2px solid rgba(255, 255, 255, 0.85);
+            border-top: 0;
+            transform: perspective(80px) rotateX(20deg);
+        }
+
+        .basketball-preview .ball {
+            position: absolute;
+            left: 78px;
+            bottom: 24px;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #f28b2e;
+            border: 2px solid #43200a;
+        }
+
         .game-content {
             flex: 1;
             display: flex;
@@ -213,6 +266,21 @@
                 <h2>Tic Tac Toe</h2>
                 <p>Take turns with a friend and line up three marks to win.</p>
                 <a href="tictactoe.html">Play Tic Tac Toe</a>
+            </div>
+        </article>
+
+        <article class="game">
+            <div class="preview" aria-hidden="true">
+                <div class="basketball-preview">
+                    <span class="rim"></span>
+                    <span class="net"></span>
+                    <span class="ball"></span>
+                </div>
+            </div>
+            <div class="game-content">
+                <h2>Basketball Shootout</h2>
+                <p>Move into position, take your shot, and see how many baskets you can make.</p>
+                <a href="basketball.html">Play Basketball</a>
             </div>
         </article>
     </main>
